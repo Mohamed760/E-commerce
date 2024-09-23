@@ -1,0 +1,35 @@
+@if (data) {
+    <div class="container">
+        <h1 class="fw-bold h4 my-3">Shop Cart :</h1>
+        <p class="text-main mb-3">Total Price : {{data.totalCartPrice}} </p>
+    
+        @for (item of data.products; track $index) {
+            <div class="row mt-4 bg-body-secondary mb-2 align-items-center p-3">
+    
+                <div class="col-md-1 p-3">
+                    <img [src]="item.product.imageCover" alt="" class="img-fluid">
+                </div>
+        
+                <div class="col-md-9">
+                    <h2 class="h5 fw-bold mt-2">{{item.product.title}}</h2>
+                    <p class="text-main my-2">Price : {{item.price}} </p>
+                    <span (click)="deleteProductFromCart(item.product._id)">Remove <i class="fa fa-trash text-danger"></i></span>
+                </div>
+        
+                <div class="col-md-2 p-3">
+                    <button (click)="updateProductCartCount(item.product._id, item.count = item.count+1)" class="border-0 p-2 text-white bg-main rounded f6-5">+</button>
+                    <span class="fw-bold">  {{item.count}}  </span>
+                    <button class=" border-0 p-2 text-white bg-danger rounded fs-6" (click)="updateProductCartCount(item.product._id, item.count = item.count-1)">-</button>
+                </div>
+        
+            </div>
+        }
+    
+        <div class="d-flex justify-content-end gap-2">
+            <button class=" btn bg-main text-white d-block " [routerLink]="['/shippingAddress', data._id ]">Payment Online</button>
+            <button class=" btn bg-main text-white d-block " [routerLink]="['/cashorder', data._id ]">cashorder</button>
+        </div>
+    
+    
+    </div>
+}

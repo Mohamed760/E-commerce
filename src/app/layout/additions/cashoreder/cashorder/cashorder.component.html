@@ -1,0 +1,68 @@
+<div class="container">
+    <h1 class="h4 fw-bold mt-5">Cash Order:</h1>
+
+    @if (successMsg) {
+    <div class="alert-success alert p-0 mt-3">
+        <p class="text-black-50 text-center fw-bold fs-4">{{successMsg}}</p>
+    </div>
+    }
+
+    <form class="my-5" [formGroup]="cashOrderForm" (ngSubmit)="submitCashOrder()">
+
+        <div class="my-4">
+            <label for="details" class="fw-bold">Details:</label>
+            <input type="text" class="form-control" formControlName="details" id="details">
+
+            @if (cashOrderForm.get("details")?.errors && cashOrderForm.get("details")?.touched) {
+
+            <div class="alert alert-danger p-0 m-0">
+
+                @if (cashOrderForm.get("details")?.errors?.["required"]) {
+                <p class="p-1 m-0">Details is Required</p>
+                }
+
+            </div>
+
+            }
+
+        </div>
+
+        <div class="my-4">
+            <label for="phone" class="fw-bold">Phone:</label>
+            <input type="tel" class="form-control" formControlName="phone" id="phone">
+
+            @if (cashOrderForm.get("phone")?.errors && cashOrderForm.get("phone")?.touched) {
+
+            <div class="alert alert-danger p-0 m-0">
+
+                @if (cashOrderForm.get("phone")?.errors?.["required"]) {
+                <p class="p-1 m-0">Phone is Required</p>
+                }
+
+            </div>
+
+            }
+        </div>
+
+        <div class="my-4">
+            <label for="city" class="fw-bold">City:</label>
+            <input type="text" class="form-control" formControlName="city" id="city">
+
+            @if (cashOrderForm.get("city")?.errors && cashOrderForm.get("city")?.touched) {
+
+            <div class="alert alert-danger p-0 m-0">
+
+                @if (cashOrderForm.get("city")?.errors?.["required"]) {
+                <p class="p-1 m-0">City is Required</p>
+                }
+
+            </div>
+
+            }
+        </div>
+
+        <button class="btn bg-main text-white d-block ms-auto">Checkout</button>
+
+    </form>
+
+</div>

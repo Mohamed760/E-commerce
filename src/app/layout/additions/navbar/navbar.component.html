@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <img src="assets/images/freshcart-logo.svg" alt="">
+      <button
+       class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between " id="navbarNav">
+
+        <ul class="navbar-nav ">
+
+          @if (isLogin == true) {
+            
+          <li class="nav-item ">
+            <a class="nav-link px-2 text-center" routerLink="home" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Home' | translate}}</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-2 text-center" routerLink="products" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Products' | translate}}</a>
+          </li>
+<!-- 
+          <li class="nav-item">
+            <a class="nav-link px-2" routerLink="categories" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Categories' | translate}}</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link px-2" routerLink="brands" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Brands' | translate}}</a>
+          </li> -->
+
+          <li class="nav-item">
+            <a class="nav-link px-2 text-center" routerLink="cart" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Cart' | translate}}</a>
+          </li>
+          }
+
+        </ul>
+
+        <div class="d-flex gap-2 align-items-center justify-content-between links">
+            <a href="https://www.facebook.com/mhmdsuliman.x?mibextid=LQQJ4d"><i class="fa-brands fa-facebook fs-4 facebook"></i></a>
+            <a href="https://x.com/mhmdsulimann"><i class="fa-brands fa-twitter fs-4 twitter"></i></a>
+            <a href="https://www.instagram.com/mhmdsuliman.x?igsh=MWZncmkxOTdrcGs2dA%3D%3D&utm_source=qr"><i class="fa-brands fa-instagram fs-4 instagram"></i></a>
+            @if (isLogin == false) {
+              <a class="nav-link" routerLink="register" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Register' | translate}}</a>
+            <a class="nav-link" routerLink="login" routerLinkActive="btn-main text-white rounded-1">{{'navbar.Login' | translate}}</a>
+            }
+           @else (){
+            <a (click)="_AuthService.logOut()" class="nav-link cursor-pointer btn btn-danger text-white p-2 bg-danger">{{'navbar.Logout' | translate}}</a>
+            <!-- <a (click)="changLang('en')" class="nav-link cursor-pointer btn btn-danger text-white p-2 bg-main">En</a>
+            <a (click)="changLang('ar')"  class="nav-link cursor-pointer btn btn-danger text-white p-2 bg-main">Ar</a> -->
+           }
+        </div>
+
+      </div>
+    </div>
+  </nav>

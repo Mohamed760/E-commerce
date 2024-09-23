@@ -1,0 +1,39 @@
+<app-homeslider></app-homeslider>
+<h2 class="my-3 fw-bold h3">Show Popular Categories</h2>
+<app-categoryslider></app-categoryslider>
+
+
+@if (isLoading) {
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <i class="fa fa-spin fa-spinner text-main fs-2"></i>
+    </div>
+}
+@else {
+    <div class="container">
+        <div class="w-75 mx-auto">
+            <input [(ngModel)]="userWord" type="text" class="form-control" placeholder="Search by title.....">
+        </div>
+        <div class="row">
+            @for (item of productList |search : userWord ; track $index) {
+
+                <div class="col-lg-2 col-md-3 py-3 product p-2">
+                    <div [routerLink]="['/productdetails', item._id]">
+                        <img [src]="item.imageCover" class="img-fluid" alt="">
+                        <span class="text-main font-sm">{{item.category.name}}</span>
+                        <h3 class="my-3 h5 fw-bold">{{item.title.split(" ").splice(0,2).join(" ")}}</h3>
+        
+                        <div class="d-flex justify-content-between">
+                            <span>{{item.price |currency : "EUR"}} EGP</span>
+                            <span>{{item.ratingsAverage}} <i class="fa fa-star rating-color"></i></span>
+                        </div>
+                    </div>
+
+                    <button (click)="addProductToCart(item._id)" class="btn bg-main w-100 text-white">Add to Cart</button>
+
+                </div>
+            }
+
+        </div>
+    </div>
+}
+
